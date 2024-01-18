@@ -1,0 +1,13 @@
+<launch>
+  <node pkg="uvc_camera" name="camera1" type="uvc_camera_node" output="screen">
+    <param name="device" type="string" value="/dev/video0"/>
+    <param name="width" type="int" value="864"/>
+    <param name="height" type="int" value="480"/> <!-- 960 540 800 600  video0-->
+    <param name="pixel_format" value="mjpeg"/>
+    <param name="camera_frame_id" value="usb_cam"/>
+    <param name="io_method" value="mmap"/>
+    <param name="frame_id" value="camera"/>
+  </node>
+    <node name="web_video_server" pkg="web_video_server" type="web_video_server" />
+
+</launch>

@@ -1,0 +1,8 @@
+<launch>
+  <node name="ahrs" pkg="engy" type="ahrs_read"/>
+  <node name="analog_input" pkg="engy" type="volt_meter.py"/>
+  <node name="tcp_node" pkg="engy" type="tcp_node.py"/>
+  <node name="led_light_set" pkg="engy" type="led_light.py"/>
+  <node name="esc_all" pkg="engy" type="esc_all.py"/>
+  <node name="esc_surge" pkg="engy" type="esc_surge.py"/>
+</launch>

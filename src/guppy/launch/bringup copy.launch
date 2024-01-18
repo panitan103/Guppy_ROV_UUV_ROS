@@ -1,0 +1,28 @@
+<launch>
+  <node pkg="uvc_camera" name="camera1" type="uvc_camera_node" output="screen">
+    <param name="device" type="string" value="/dev/video0"/>
+    <param name="width" type="int" value="864"/>
+    <param name="height" type="int" value="480"/> <!-- 960 540 800 600-->
+    <param name="pixel_format" value="mjpeg"/>
+    <param name="camera_frame_id" value="usb_cam"/>
+    <param name="io_method" value="mmap"/>
+    <param name="frame_id" value="camera"/>
+  </node>
+
+  <node ns="imu" name="imu_node" pkg="imu_bno055" type="bno055_i2c_node" respawn="true" respawn_delay="2">
+    <param name="device" type="string" value="/dev/i2c-4"/>
+    <param name="address" type="int" value="40"/> <!-- 0x28 == 40 is the default for BNO055 -->
+    <param name="frame_id" type="string" value="imu"/>
+  </node>
+
+  <node name="compass" pkg="guppy" type="compass.py"/>
+  <node name="analog_input" pkg="guppy" type="volt_meter.py"/>
+  <node name="tcp_node" pkg="guppy" type="tcp_node.py"/>
+  <node name="esc_lift.py" pkg="guppy" type="esc_all.py"/>
+  <node name="esc_plane.py" pkg="guppy" type="esc_all.py"/>
+  <node name="led_light_set" pkg="guppy" type="led_light.py"/>
+
+  <node name="web_video_server" pkg="web_video_server" type="web_video_server" />
+  <node name="depth_node" pkg="guppy" type="depth_node.py"/>
+
+</launch>
